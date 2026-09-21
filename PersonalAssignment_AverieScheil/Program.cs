@@ -1,7 +1,15 @@
+using Microsoft.EntityFrameworkCore;
+using PersonalAssignment_AverieScheil.Models;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+
+builder.Services.AddDbContext<TheContext>(options =>
+{
+    options.UseSqlServer("Server=(localdb)\\MSSQLLocalDB;Database=WaterStressDB;Trusted_Connection=True;TrustServerCertificate=True;");
+});
 
 var app = builder.Build();
 
