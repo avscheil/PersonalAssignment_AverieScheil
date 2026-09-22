@@ -1,15 +1,24 @@
 using Microsoft.EntityFrameworkCore;
 using PersonalAssignment_AverieScheil.Models;
+using Microsoft.AspNetCore.Identity;
+//using PersonalAssignment_AverieScheil.Data;
 
 var builder = WebApplication.CreateBuilder(args);
+var connectionString = builder.Configuration.GetConnectionString("TheContextConnection") ?? throw new InvalidOperationException("Connection string 'TheContextConnection' not found."); ;
+
+builder.Services.AddDbContext<TheContext>(options =>
+{
+    options.UseSqlServer(builder.Configuration.GetConnectionString("TheContextConnection"));
+});
+
+builder.Services.AddDefaultIdentity<IdentityUser>(options =>
+options.SignIn.RequireConfirmedAccount = true).AddEntityFrameworkStores<TheContext>();
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 
-builder.Services.AddDbContext<TheContext>(options =>
-{
-    options.UseSqlServer("Server=(localdb)\\MSSQLLocalDB;Database=WaterStressDB;Trusted_Connection=True;TrustServerCertificate=True;");
-});
+// Razor pages
+builder.Services.AddRazorPages();
 
 var app = builder.Build();
 
@@ -27,6 +36,11 @@ app.UseRouting();
 app.UseAuthorization();
 
 app.MapStaticAssets();
+
+app.UseEndpoints(endpoints =>
+{
+    endpoints.MapRazorPages();
+});
 
 app.MapControllerRoute(
     name: "default",

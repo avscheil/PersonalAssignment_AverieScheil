@@ -1,16 +1,24 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore;
 
 namespace PersonalAssignment_AverieScheil.Models
 {
-    public class TheContext : DbContext
+    public class TheContext : IdentityDbContext<User>
     {
-        public DbSet<User> Users { get; set; }
+        public TheContext(DbContextOptions<TheContext> options) : base(options)
+        {
+
+        }
+
         public DbSet<UserToData> UserToDatas { get; set; }
         public DbSet<DataRecord> DataRecords { get; set; }
 
-        public TheContext(DbContextOptions options) : base(options)
+        protected override void OnModelCreating(ModelBuilder builder)
         {
-        
+            base.OnModelCreating(builder);
+            // Customize the ASP.NET Identity model and override the defaults if needed.
+            // For example, you can rename the ASP.NET Identity table names and more.
+            // Add your customizations after calling base.OnModelCreating(builder);
         }
     }
 }
