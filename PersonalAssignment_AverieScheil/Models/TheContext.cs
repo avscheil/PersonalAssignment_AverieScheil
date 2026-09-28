@@ -1,9 +1,10 @@
-﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
 namespace PersonalAssignment_AverieScheil.Models
 {
-    public class TheContext : IdentityDbContext<User>
+    public class TheContext : IdentityDbContext<IdentityUser>
     {
         public TheContext(DbContextOptions<TheContext> options) : base(options)
         {
