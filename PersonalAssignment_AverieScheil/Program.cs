@@ -1,6 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using PersonalAssignment_AverieScheil.Models;
 using Microsoft.AspNetCore.Identity;
+using PersonalAssignment_AverieScheil.Data;
 //using PersonalAssignment_AverieScheil.Data;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -11,8 +12,8 @@ builder.Services.AddDbContext<TheContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("TheContextConnection"));
 });
 
-builder.Services.AddDefaultIdentity<IdentityUser>(options =>
-options.SignIn.RequireConfirmedAccount = true).AddEntityFrameworkStores<TheContext>();
+builder.Services.AddDefaultIdentity<ApplicationUser>(options =>
+options.SignIn.RequireConfirmedAccount = false).AddEntityFrameworkStores<TheContext>();
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();

@@ -1,10 +1,11 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
+using PersonalAssignment_AverieScheil.Data;
 
 namespace PersonalAssignment_AverieScheil.Models
 {
-    public class TheContext : IdentityDbContext<IdentityUser>
+    public class TheContext : IdentityDbContext<ApplicationUser>
     {
         public TheContext(DbContextOptions<TheContext> options) : base(options)
         {
