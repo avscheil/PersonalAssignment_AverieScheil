@@ -10,5 +10,10 @@ namespace PersonalAssignment_AverieScheil.Controllers
         {
             return View();
         }
+
+        public IActionResult SeeMapData()
+        {
+            return View();
+        }
     }
 }
