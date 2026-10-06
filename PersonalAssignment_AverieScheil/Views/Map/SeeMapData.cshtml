@@ -1,3 +1,14 @@
-﻿<div class="text-center">
+﻿@using Microsoft.AspNetCore.Identity;
+@using PersonalAssignment_AverieScheil.Data;
+@* 
+@inject SignInManager<IdentityUser> SignInManager
+@inject UserManager<ApplicationUser> UserManager *@
+
+<div class="text-center">
     <h1 class="display-4">This is where you will see the map</h1>
 </div>
+
+@if(User.IsInRole("Admin"))
+{
+    <h1> Hi admin </h1>
+}
