@@ -121,6 +121,8 @@ namespace PersonalAssignment_AverieScheil.Areas.Identity.Pages.Account
 
                 if (result.Succeeded)
                 {
+                    /*AVERIE YOU FAT LARD LOOK HERE*/
+                    /*await UserManager.AddToRoleAsync(user, "User");*/
                     _logger.LogInformation("User created a new account with password.");
 
                     var userId = await _userManager.GetUserIdAsync(user);

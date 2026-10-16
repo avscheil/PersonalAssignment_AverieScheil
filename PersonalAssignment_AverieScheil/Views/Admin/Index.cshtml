@@ -1,0 +1,48 @@
+﻿@using Microsoft.AspNetCore.Identity;
+@inject UserManager<ApplicationUser> UserManager;
+@using PersonalAssignment_AverieScheil.Data;
+<div class="text-center">
+    <h1 class="display-4">Admin index, see users here</h1>
+
+    @if (TempData["Error"] != null)
+    {
+        <div>
+        @TempData["Error"]
+        </div>
+    }
+
+    <table>
+
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Current Role</th>
+                <th>Edit</th>
+                <th>Delete</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            @foreach (var user in Model)
+            {
+                <tr>
+                    <td>@user.UserName</td>
+                    <td>@string.Join(", ", user.Roles)</td>
+                    <td>
+                        <a asp-controller="Admin" asp-action="EditRoles" asp-route-id="@user.Id" class="">Edit Roles</a>
+                        @*onsubmit?*@
+                    </td>
+                    <td>
+                        <form asp-controller="Admin" asp-action="DeleteUser" method="post">
+                            <input type="hidden" name="id" value="@user.Id" />
+                            <button type="submit" class="btn btn-danger">Delete User</button>
+                        </form>
+                    </td>
+                </tr>
+            }
+            
+        </tbody>
+
+    </table>
+
+</div>
