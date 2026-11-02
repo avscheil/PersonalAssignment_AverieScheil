@@ -5,8 +5,32 @@
 @inject UserManager<ApplicationUser> UserManager *@
 
 <div class="text-center">
-    <h1 class="display-4">This is where you will see the map</h1>
+    <h1 class="display-4">View Your Maps</h1>
 </div>
+
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+
+<form asp-controller="MapController" asp-action="Upload" method="post">
+    <label for="csvFile" class="badge bg-secondary">Upload your CSV File:</label>
+    <input type="file" id="csvFile" name="csvFile" accept=".csv"/>
+    <button type="submit" class="btn btn-primary">Upload CSV</button>
+</form>
+
+<fieldset id="metric-toggle" class="mb-2">
+    <em>Loading metrics…</em>
+</fieldset>
+
+<div id="map" style="height: 70vh; border: 1px solid #ccc;"></div>
+
+<div id="legend" class="mt-2"></div>
+
+@section Scripts
+{
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script src="https://unpkg.com/leaflet.heat@0.2.0/dist/leaflet-heat.js"></script>
+    <script> window.DATASET_ID = "@(ViewBag.DatasetId?.ToString() ?? "")"; </script>
+    <script src="~/js/heatmap.js" asp-append-version="true"></script>
+}
 
 @if(User.IsInRole("Admin"))
 {

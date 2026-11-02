@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using CsvHelper;
 
 namespace PersonalAssignment_AverieScheil.Controllers
 {
@@ -11,9 +12,11 @@ namespace PersonalAssignment_AverieScheil.Controllers
             return View();
         }
 
-        public IActionResult SeeMapData()
+        public IActionResult SeeMapData(Guid? id)
         {
+            ViewBag.DatasetId = id;
             return View();
         }
+
     }
 }
