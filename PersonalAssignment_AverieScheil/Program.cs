@@ -2,6 +2,8 @@ using Microsoft.EntityFrameworkCore;
 using PersonalAssignment_AverieScheil.Models;
 using Microsoft.AspNetCore.Identity;
 using PersonalAssignment_AverieScheil.Data;
+using PersonalAssignment_AverieScheil.Services;
+using Microsoft.AspNetCore.Http.Features;
 //using PersonalAssignment_AverieScheil.Data;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -22,6 +24,14 @@ builder.Services.AddControllersWithViews();
 
 // Razor pages
 builder.Services.AddRazorPages();
+
+builder.Services.AddSingleton<DatasetStore>();
+builder.Services.AddScoped<CsvIngestService>();
+
+builder.Services.Configure<FormOptions>(o =>
+{
+    o.MultipartBodyLengthLimit = 500L * 1024 * 1024; //500 MB
+});
 
 var app = builder.Build();
 
