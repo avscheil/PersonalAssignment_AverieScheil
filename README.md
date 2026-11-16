@@ -7,4 +7,4 @@ The problem that this app will solve is giving end users a clear, digestible ana
 The data collected would be water stress, leaf density, and nitrogen content measured by a sensor that the end user owns.
 Those measurements then will be turned into a graphical map by the app and displayed back to the end user. 
 
-Project Status: Planning Stage
+Project Status: Creating Stage
